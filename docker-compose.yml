@@ -73,5 +73,17 @@ services:
       - auth-service
       - contest-service
 
+  ai-agent-service:
+    build: '../Backend/AI Agent Service'
+    container_name: ai-agent-service
+    depends_on:
+      - auth-service
+      - contest-service
+      - market-data-service
+    environment:
+      - AUTH_SERVICE_URL=http://auth-service:8080
+      - CONTEST_SERVICE_URL=http://contest-service:8081
+      - MARKET_DATA_SERVICE_URL=http://market-data-service:8082
+
 volumes:
   postgres_data:
