@@ -59,6 +59,15 @@ services:
         condition: service_started
     environment:
       - CONTEST_SERVICE_URL=http://contest-service:8081/api/internal/contests/active-symbols
+      - DATABASE_URL=postgresql://pickfolio_user:pickfolio_pass@db:5432/pickfolio_market_data
+      - MARKET_MOVERS_REFRESH_INTERVAL_SEC=900
+      - NEWS_INTRADAY_INTERVAL_SEC=1800
+      - NEWS_INTRADAY_DELAY_MIN=1.0
+      - NEWS_INTRADAY_DELAY_MAX=1.5
+      - NEWS_OVERNIGHT_DELAY_MIN=1.5
+      - NEWS_OVERNIGHT_DELAY_MAX=2.5
+      - NEWS_TOP_CATALYSTS_LIMIT=10
+      - NEWS_REACTIVE_FETCH_CONCURRENCY=2
 
   pickfolio-ui:
     build:
