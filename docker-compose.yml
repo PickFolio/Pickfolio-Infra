@@ -94,6 +94,15 @@ services:
       - CONTEST_SERVICE_URL=http://contest-service:8081
       - MARKET_DATA_SERVICE_URL=http://market-data-service:8082
 
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - "8083:8080"
+    depends_on:
+      - db
+
   portainer:
     image: portainer/portainer-ce:latest
     container_name: portainer
