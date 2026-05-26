@@ -60,6 +60,12 @@ services:
     environment:
       - CONTEST_SERVICE_URL=http://contest-service:8081/api/internal/contests/active-symbols
       - DATABASE_URL=postgresql://pickfolio_user:pickfolio_pass@db:5432/pickfolio_market_data
+      - STOCK_HISTORY_INCREMENTAL_ON_STARTUP=false
+      - STOCK_HISTORY_INCREMENTAL_SCHEDULER_ENABLED=true
+      - STOCK_HISTORY_INCREMENTAL_RUN_HOUR_IST=3
+      - STOCK_HISTORY_INCREMENTAL_RUN_MINUTE_IST=0
+      - STOCK_HISTORY_INCREMENTAL_DELAY_SEC=0.5
+      - STOCK_HISTORY_INCREMENTAL_LOOKBACK_DAYS=10
       - MARKET_MOVERS_REFRESH_INTERVAL_SEC=900
       - NEWS_INTRADAY_INTERVAL_SEC=1800
       - NEWS_INTRADAY_DELAY_MIN=1.0
@@ -68,6 +74,8 @@ services:
       - NEWS_OVERNIGHT_DELAY_MAX=2.5
       - NEWS_TOP_CATALYSTS_LIMIT=10
       - NEWS_REACTIVE_FETCH_CONCURRENCY=2
+      - NEWS_SENTIMENT_ENABLED=false
+      - NEWS_INTRADAY_FULL_SCAN_ENABLED=false
 
   pickfolio-ui:
     build:
